@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+    --background: #ffffff;
+    --foreground: #1E1E1E;
+    --gray-medium: #808080;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+     :root {
+        --background: #ffffff;
+        --foreground: #1E1E1E;
+        --gray-medium: #808080;
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    /* font-family: Poppins, sans-serif; */
+    font-family: var(--font-poppins), sans-serif;
+    /* Sử dụng biến CSS đã định nghĩa */
+    margin: 0;
+    padding: 0 99px;
+    overflow-x: hidden;
+    /* Ngăn chặn scroll ngang không mong muốn */
+}
+
+header {
+    font-family: Fragment Mono, monospace;
+}
+
+
+/* Áp dụng Fragment Mono cho các phần tử cần nó */
+
+.font-fragment-mono {
+    /* Tên class bạn tự định nghĩa */
+    font-family: 'Fragment Mono', monospace;
+    /* 'Fragment Mono' là tên font từ Google Fonts */
+}
+
+.font-poppins {
+    font-family: var(--font-poppins), sans-serif;
+}
+
+.email-link-underline {
+    position: relative;
+    /* Cần thiết để ::after có thể định vị tương đối */
+    display: inline-block;
+    /* Đảm bảo nó bao bọc nội dung và có chiều rộng */
+    text-decoration: none;
+    /* Loại bỏ gạch chân mặc định */
+}
+
+.email-link-underline::after {
+    content: '';
+    /* Cần thiết cho pseudo-element */
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    /* Điều chỉnh vị trí dọc của gạch chân nếu cần */
+    width: 0%;
+    /* Bắt đầu với chiều rộng 0, ẩn đi */
+    height: 2px;
+    /* Độ dày của gạch chân */
+    background-color: var(--foreground);
+    /* Màu của gạch chân (tương ứng với Tailwind blue-600) */
+    transition: width 0.2s ease-out;
+    /* Hiệu ứng chuyển đổi trong 0.2 giây */
+}
+
+.email-link-underline:hover::after {
+    width: 100%;
+    /* Khi hover, gạch chân sẽ mở rộng ra toàn bộ chiều rộng */
 }
