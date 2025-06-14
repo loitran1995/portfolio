@@ -1,12 +1,12 @@
 // components/AnimatedText.tsx
 'use client';
 
-import { motion, Variants, TargetAndTransition, HTMLMotionProps } from 'framer-motion'; // <-- THÊM Variants VÀO ĐÂY
-import React from 'react'; // Đảm bảo React được import vì chúng ta dùng React.ComponentType
+import { motion, Variants, TargetAndTransition } from 'framer-motion';
+import React from 'react'; // Đảm bảo React được import nếu bạn cần nó cho các kiểu khác
 
 interface AnimatedTextProps {
     text: string;
-    charVariants: Variants; // <-- SỬA `any` THÀNH `Variants`
+    charVariants: Variants;
     className?: string;
     elementType?: 'h1' | 'p' | 'span';
     totalDuration?: number;
@@ -21,7 +21,7 @@ export default function AnimatedText({
 }: AnimatedTextProps) {
     const characters = text.split('');
 
-    const charAnimationDuration = (charVariants.visible as TargetAndTransition )?.transition?.duration || 0.3; // THÊM AS ANY NẾU TS KHÔNG HIỂU TYPE CỦA charVariants.visible
+    const charAnimationDuration = (charVariants.visible as TargetAndTransition)?.transition?.duration || 0.3;
 
     const effectiveTotalDuration = totalDuration - charAnimationDuration;
     
@@ -29,7 +29,7 @@ export default function AnimatedText({
         ? Math.max(0, effectiveTotalDuration / (characters.length - 1))
         : 0;
 
-    const container: Variants = { // <-- THÊM Variants VÀO ĐÂY
+    const container: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -39,11 +39,12 @@ export default function AnimatedText({
         },
     };
 
-    // Kiểm tra để đảm bảo elementType là một key hợp lệ của motion
-    type AllowedHTMLElements = 'h1' | 'p' | 'span';
-    const Element: React.ComponentType<HTMLMotionProps<AllowedHTMLElements>> = motion[elementType];
+    // ĐÂY LÀ DÒNG CẦN SỬA ĐỔI:
+    // HÃY BỎ HẾT KIỂU CHÚ THÍCH TRƯỚC motion[elementType]
+    // Để TypeScript tự suy luận kiểu của Element là một union của các ForwardRefComponent cụ thể
+    const Element = motion[elementType]; 
 
-     return (
+    return (
         <Element
             variants={container}
             initial="hidden"
