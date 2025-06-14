@@ -1,7 +1,8 @@
 // components/AnimatedText.tsx
 'use client';
 
-import { motion, Variants, TargetAndTransition} from 'framer-motion'; // <-- THÊM Variants VÀO ĐÂY
+import { motion, Variants, TargetAndTransition, HTMLMotionProps } from 'framer-motion'; // <-- THÊM Variants VÀO ĐÂY
+import React from 'react'; // Đảm bảo React được import vì chúng ta dùng React.ComponentType
 
 interface AnimatedTextProps {
     text: string;
@@ -39,7 +40,8 @@ export default function AnimatedText({
     };
 
     // Kiểm tra để đảm bảo elementType là một key hợp lệ của motion
-    const Element = motion[elementType as keyof typeof motion]; // <-- THÊM `as keyof typeof motion` để đảm bảo kiểu
+    type AllowedHTMLElements = 'h1' | 'p' | 'span';
+    const Element: React.ComponentType<HTMLMotionProps<AllowedHTMLElements>> = motion[elementType];
 
      return (
         <Element
