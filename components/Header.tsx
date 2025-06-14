@@ -3,7 +3,6 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion'; // Import motion từ framer-motion
 
 export default function Header() {
   const navItems = [
