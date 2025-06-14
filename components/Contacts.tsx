@@ -1,7 +1,8 @@
 // app/contacts/page.tsx
 'use client'; // Bắt buộc nếu bạn dùng Framer Motion hoặc các hook của React
 
-import { motion } from 'framer-motion';
+// THÊM Variants, Transition, Easing VÀO IMPORT
+import { motion, Variants, Transition, Easing } from 'framer-motion';
 import { Metadata } from 'next'; // Dùng cho metadata tĩnh, hoặc động nếu cần
 
 import { LuArrowUpRight } from "react-icons/lu";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function Contacts() {
   // Variants cho animation (có thể tái sử dụng từ HeroSection hoặc tùy chỉnh)
-  const containerVariants = {
+  const containerVariants: Variants = { // <-- THÊM : Variants
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -24,9 +25,16 @@ export default function Contacts() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = { // <-- THÊM : Variants
     hidden: { opacity: 0, y: 20 }, // Bắt đầu từ dưới lên một chút
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.6, 
+        ease: 'easeOut' as Easing // <-- ÉP KIỂU 'easeOut' thành Easing
+      } as Transition // <-- ÉP KIỂU TOÀN BỘ OBJECT THÀNH Transition
+    },
   };
 
   return (
@@ -37,11 +45,12 @@ export default function Contacts() {
       className="flex flex-col items-center md:items-start text-center md:text-left
                  w-full py-[4rem] " // Thêm pt để tránh header cố định
     >
-          <div className="w-full h-[1px] bg-[var(--foreground)] mb-12" />
+        <div className="w-full h-[1px] bg-[var(--foreground)] mb-12" />
       {/* DIV 1: TIÊU ĐỀ "CONTACTS" */}
       <motion.h1
         variants={itemVariants}
-className="text-[32px] font-fragment-mono text-[var(--gray-medium)] mb-4 w-full text-center md:text-left"       >
+        className="text-[32px] font-fragment-mono text-[var(--gray-medium)] mb-4 w-full text-center md:text-left"
+      >
         Contacts
       </motion.h1>
 
@@ -52,7 +61,7 @@ className="text-[32px] font-fragment-mono text-[var(--gray-medium)] mb-4 w-full 
           <motion.a
             variants={itemVariants}
             href="mailto:work.loitran@example.com"
-            className="text-base  font-poppins text-[var(--foreground)] email-link-underline md:mb-2 inline-block"
+            className="text-base font-poppins text-[var(--foreground)] email-link-underline md:mb-2 inline-block"
           >
             work.loitran@example.com
           </motion.a>

@@ -1,7 +1,8 @@
 // components/Button.tsx
 'use client';
 
-import { motion } from 'framer-motion';
+// THÊM Transition và Easing VÀO IMPORT
+import { motion, Variants, Transition, Easing } from 'framer-motion';
 import React from 'react';
 import { LuArrowUpRight } from "react-icons/lu";
 
@@ -20,55 +21,55 @@ const ANIMATION_DURATION = 1.0; // Thời gian animation tổng thể
 const EASE_TYPE = "easeInOut"; // Kiểu chuyển động ổn định hơn
 
 // Variants cho TOÀN BỘ BUTTON (thẻ motion.a / motion.button) - chỉ quản lý opacity
-const buttonVariants = {
+const buttonVariants: Variants = { // THÊM : Variants
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
         transition: {
-            duration: 0.3, // Nút tự hiện ra nhanh hơn
-            ease: "easeOut",
-            delayChildren: 0.1 // Độ trễ trước khi các animation con (text và icon) bắt đầu
-        }
+            duration: 0.3,
+            ease: EASE_TYPE as Easing, // SỬA: Cast EASE_TYPE thành Easing
+            delayChildren: 0.1
+        } as Transition // THÊM: Cast toàn bộ object thành Transition
     }
 };
 
 // Variants cho khối TEXT (wrapper của các ký tự) - áp dụng clipPath để hiện text
-const textWrapperVariants = {
-    hidden: { clipPath: 'inset(0% 100% 0% 0%)', opacity: 0 }, // Text bắt đầu bị cắt từ phải, ẩn
+const textWrapperVariants: Variants = { // THÊM : Variants
+    hidden: { clipPath: 'inset(0% 100% 0% 0%)', opacity: 0 },
     visible: {
-        clipPath: 'inset(0% 0% 0% 0%)', // Text mở rộng và hiện rõ
+        clipPath: 'inset(0% 0% 0% 0%)',
         opacity: 1,
         transition: {
-            duration: ANIMATION_DURATION, // Thời gian cho hiệu ứng text mở ra
-            ease: EASE_TYPE,
-            staggerChildren: 0.05, // Độ trễ giữa các ký tự
-            delayChildren: ANIMATION_DURATION * 0.2 // Độ trễ cho các ký tự bắt đầu animation
-        }
+            duration: ANIMATION_DURATION,
+            ease: EASE_TYPE as Easing, // SỬA: Cast EASE_TYPE thành Easing
+            staggerChildren: 0.05,
+            delayChildren: ANIMATION_DURATION * 0.2
+        } as Transition // THÊM: Cast toàn bộ object thành Transition
     }
 };
 
 // Variants cho animation của ICON - trượt vào độc lập
-const iconVariants = {
-    hidden: { x: -80, opacity: 0 }, // Icon bắt đầu dịch trái XA HƠN, ẩn (dựa vào overflow-hidden của button cha)
+const iconVariants: Variants = { // THÊM : Variants
+    hidden: { x: -80, opacity: 0 },
     visible: {
-        x: 0,          // Chạy về vị trí ban đầu
-        opacity: 1,    // Hiện ra
+        x: 0,
+        opacity: 1,
         transition: {
-            duration: ANIMATION_DURATION * 0.7, // Thời gian chạy của icon (khoảng 70% tổng thời gian)
-            ease: EASE_TYPE,
-            delay: ANIMATION_DURATION * 0.1 // Icon bắt đầu sớm hơn một chút trong quá trình
-        }
+            duration: ANIMATION_DURATION * 0.7,
+            ease: EASE_TYPE as Easing, // SỬA: Cast EASE_TYPE thành Easing
+            delay: ANIMATION_DURATION * 0.1
+        } as Transition // THÊM: Cast toàn bộ object thành Transition
     }
 };
 
 // Variants cho animation của TỪNG KÝ TỰ
-const textCharVariants = {
+const textCharVariants: Variants = { // THÊM : Variants
     hidden: { opacity: 0, y: 10, filter: 'blur(5px)' },
     visible: {
         opacity: 1,
         y: 0,
         filter: 'blur(0px)',
-        transition: { duration: 0.3, ease: 'easeOut' }
+        transition: { duration: 0.3, ease: EASE_TYPE as Easing } as Transition // SỬA: Cast EASE_TYPE thành Easing và toàn bộ object thành Transition
     }
 };
 
@@ -107,8 +108,8 @@ export default function Button({
         hover:text-white
         hover:bg-black
         hover:border-transparent
-        overflow-hidden /* RẤT QUAN TRỌNG: để che giấu icon và text khi chúng ở ngoài ban đầu */
-        width: fit-content; /* Đảm bảo button có width tự nhiên theo nội dung */
+        overflow-hidden
+        width: fit-content;
     `;
 
     const iconSpacing = 'ml-4';
@@ -126,13 +127,11 @@ export default function Button({
     // Xử lý nội dung text: nếu là string thì chia nhỏ để animate từng ký tự
     const animatedChildren = typeof children === 'string'
         ? (
-            // Áp dụng textWrapperVariants (có clipPath) cho khối text
             <motion.span variants={textWrapperVariants} className="inline-block">
                 {splitTextToCharacters(children)}
             </motion.span>
         )
         : (
-            // Nếu không phải string, wrap trong motion.span để vẫn có thể áp dụng clipPath
             <motion.span variants={textWrapperVariants} className="inline-block">
                 {children}
             </motion.span>
@@ -148,17 +147,14 @@ export default function Button({
             onClick={onClick}
             className={allClassNames}
             disabled={disabled}
-            variants={buttonVariants} // Áp dụng animation opacity tổng thể cho button
+            variants={buttonVariants}
             initial="hidden"
             animate="visible"
             whileTap={{ scale: disabled ? 1 : 0.95 }}
         >
-            {/* Div bọc nội dung để căn giữa và chứa cả text và icon */}
             <div className="inline-flex items-center justify-center h-full w-full">
-                {/* Text được animate bằng clipPath */}
                 {animatedChildren}
 
-                {/* Icon được animate trượt vào độc lập */}
                 <motion.span variants={iconVariants} className={`${iconSpacing} ${iconContainerStyles}`}>
                     <LuArrowUpRight />
                 </motion.span>
