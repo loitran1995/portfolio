@@ -1,7 +1,7 @@
 // components/AnimatedText.tsx
 'use client';
 
-import { motion, Variants } from 'framer-motion'; // <-- THÊM Variants VÀO ĐÂY
+import { motion, Variants, TargetAndTransition} from 'framer-motion'; // <-- THÊM Variants VÀO ĐÂY
 
 interface AnimatedTextProps {
     text: string;
@@ -20,7 +20,7 @@ export default function AnimatedText({
 }: AnimatedTextProps) {
     const characters = text.split('');
 
-    const charAnimationDuration = (charVariants.visible as any)?.transition?.duration || 0.3; // THÊM AS ANY NẾU TS KHÔNG HIỂU TYPE CỦA charVariants.visible
+    const charAnimationDuration = (charVariants.visible as TargetAndTransition )?.transition?.duration || 0.3; // THÊM AS ANY NẾU TS KHÔNG HIỂU TYPE CỦA charVariants.visible
 
     const effectiveTotalDuration = totalDuration - charAnimationDuration;
     
@@ -41,7 +41,7 @@ export default function AnimatedText({
     // Kiểm tra để đảm bảo elementType là một key hợp lệ của motion
     const Element = motion[elementType as keyof typeof motion]; // <-- THÊM `as keyof typeof motion` để đảm bảo kiểu
 
-    return (
+     return (
         <Element
             variants={container}
             initial="hidden"
