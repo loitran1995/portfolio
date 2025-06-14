@@ -47,7 +47,7 @@ export default function HeroSection() {
       animate="show"
       // Thay đổi bố cục thành flexbox, căn giữa theo chiều dọc
       // Thêm padding và max-w để nội dung không bị quá rộng
-      className="flex flex-col md:flex-row items-start md:items-start justify-start md:justify-start
+      className="flex flex-col md:flex-row items-center md:items-center justify-center md:justify-center
                  text-center md:text-left w-full py-[2rem]"
     >
       {/* Cột trái: Hình ảnh Avatar */}
@@ -99,7 +99,7 @@ export default function HeroSection() {
           An inspired designer, driven by passion.
         </AnimatedText>
         <Button
-          href="/projects"
+          href="https://drive.google.com/file/d/1R54mkWFuYN-t76L_GWH9ng1sfML5qoRr/view"
           className="mb-6" // Giữ lại mb-6 để có khoảng cách dưới nút 
           >
           PDF Version
@@ -107,12 +107,12 @@ export default function HeroSection() {
        
 
 {/* Các Link Diploma */}
-<motion.div variants={containerVariants} className="flex flex-col space-y-3">
+<motion.div variants={containerVariants} className="flex flex-col space-y-3 md:flex-row items-center md:items-start justify-center md:justify-start">
   {/* Khối bọc chung cho các link */}
   <div className="flex flex-row space-x-4 flex-wrap">
     <motion.a
       variants={itemVariants}
-      href="https://www.your-diploma-link-1.com" // THAY ĐỔI LINK DIPLOMA 1
+      href="https://drive.google.com/file/d/1GZd0Dj4fTDmkgq2zi8dDfj7t63SXSxDs/view" // THAY ĐỔI LINK DIPLOMA 1
       target="_blank"
       rel="noopener noreferrer"
       // Sử dụng flexbox để căn chỉnh nội dung bên trong link
@@ -123,7 +123,7 @@ export default function HeroSection() {
     </motion.a>
     <motion.a
       variants={itemVariants}
-      href="https://www.your-diploma-link-2.com" // THAY ĐỔI LINK DIPLOMA 2
+      href="https://drive.google.com/file/d/1DwYcbeFn31Z5o11X4bti-g7MkUTFgYpd/view" // THAY ĐỔI LINK DIPLOMA 2
       target="_blank"
       rel="noopener noreferrer"
       // Sử dụng flexbox để căn chỉnh nội dung bên trong link

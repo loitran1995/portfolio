@@ -16,8 +16,8 @@ export default function Header() {
   return (
     <header className="w-full bg-white py-12 top-0 left-0 z-50 ">
       <nav className="flex items-center justify-between w-full text-[var(--foreground)]">
-        <Link href="/" className="flex items-center">
-          <img src="/logo.svg" alt="Loi Tran Logo" className="h-16 w-auto" />
+        <Link href="/" className="flex items-center flex-shrink-0">
+          <img src="/logo.svg" alt="Loi Tran Logo" className="h-16 w-auto flex-shrink-0" />
         </Link>
 
         <div className="flex items-center flex-grow ml-[128px]">
@@ -47,7 +47,7 @@ export default function Header() {
               href="mailto:work.loitran@example.com"
               className="text-[16px] font-fragment-mono text-[#1E1E1E] email-link-underline"
             >
-              work.loitran@example.com
+              work.loitran@gmail.com
             </a>
           </div>
         </div>
