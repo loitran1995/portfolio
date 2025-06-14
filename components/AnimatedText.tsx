@@ -1,50 +1,45 @@
 // components/AnimatedText.tsx
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion'; // <-- THÊM Variants VÀO ĐÂY
 
 interface AnimatedTextProps {
     text: string;
-    charVariants: any;
-    // staggerDelay?: number; // Không cần truyền trực tiếp staggerDelay nữa
+    charVariants: Variants; // <-- SỬA `any` THÀNH `Variants`
     className?: string;
     elementType?: 'h1' | 'p' | 'span';
-    totalDuration?: number; // THÊM: Tổng thời gian mong muốn cho toàn bộ animation text
+    totalDuration?: number;
 }
 
 export default function AnimatedText({
     text,
     charVariants,
-    // staggerDelay = 0.02, // Đã bỏ
     className,
     elementType = 'span',
-    totalDuration = 1.0, // Mặc định tổng thời gian là 1 giây
+    totalDuration = 1.0,
 }: AnimatedTextProps) {
     const characters = text.split('');
 
-    // Tính toán staggerDelay động dựa trên tổng thời gian và số ký tự
-    // Trừ đi duration của mỗi ký tự để đảm bảo ký tự cuối cùng cũng kịp hoàn thành
-    const charAnimationDuration = charVariants.visible?.transition?.duration || 0.3; // Lấy duration từ charVariants, mặc định 0.3s
-    const effectiveTotalDuration = totalDuration - charAnimationDuration; // Thời gian hiệu quả cho stagger
+    const charAnimationDuration = (charVariants.visible as any)?.transition?.duration || 0.3; // THÊM AS ANY NẾU TS KHÔNG HIỂU TYPE CỦA charVariants.visible
+
+    const effectiveTotalDuration = totalDuration - charAnimationDuration;
     
-    // Đảm bảo staggerDelay không âm và không chia cho 0
     const calculatedStaggerDelay = characters.length > 1
         ? Math.max(0, effectiveTotalDuration / (characters.length - 1))
         : 0;
 
-    const container = {
+    const container: Variants = { // <-- THÊM Variants VÀO ĐÂY
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: calculatedStaggerDelay, // Sử dụng staggerDelay đã tính toán
-                // Không cần transition chung ở đây nếu muốn kiểm soát qua staggerChildren
-                // duration: totalDuration, // Có thể thêm nếu muốn animation opacity cho container
+                staggerChildren: calculatedStaggerDelay,
             },
         },
     };
 
-    const Element = motion[elementType];
+    // Kiểm tra để đảm bảo elementType là một key hợp lệ của motion
+    const Element = motion[elementType as keyof typeof motion]; // <-- THÊM `as keyof typeof motion` để đảm bảo kiểu
 
     return (
         <Element
@@ -52,14 +47,13 @@ export default function AnimatedText({
             initial="hidden"
             animate="visible"
             className={className}
-            // Đảm bảo phần tử bọc ngoài cùng là block để text xuống dòng
             style={{ display: 'block', flexWrap: 'wrap' }}
         >
             {characters.map((char, index) => (
                 <motion.span
                     key={index}
                     variants={charVariants}
-                    className="inline-block" // Giữ inline-block để các chữ cái animate riêng
+                    className="inline-block"
                 >
                     {char === ' ' ? '\u00A0' : char}
                 </motion.span>
