@@ -1,12 +1,11 @@
 // app/layout.tsx
 
 import './globals.css';
-import { Inter, Poppins } from 'next/font/google'; // Giữ Inter nếu bạn vẫn muốn dùng nó với next/font/google
+import {Poppins } from 'next/font/google'; // Giữ Inter nếu bạn vẫn muốn dùng nó với next/font/google
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
 
 // Cấu hình font Google Inter (giữ nguyên nếu bạn muốn dùng Inter với next/font/google)
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '600', '700'], // Đảm bảo có '400' ở đây

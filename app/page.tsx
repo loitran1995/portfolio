@@ -1,7 +1,6 @@
 // app/page.tsx
 'use client';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+
 
 import HeroSection from '@/components/HeroSection'; // Comment hoặc xóa nếu chưa có HeroSection
 import Contacts from '@/components/Contacts'
