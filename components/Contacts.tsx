@@ -21,6 +21,8 @@ export default function Contacts() {
       opacity: 1,
       transition: {
         staggerChildren: 0.1, // Tùy chỉnh thời gian giữa các phần tử con
+             
+
       },
     },
   };
@@ -39,11 +41,13 @@ export default function Contacts() {
 
   return (
     <motion.div
+          id="contacts-section"
+
       variants={containerVariants}
       initial="hidden"
       animate="show"
       className="flex flex-col items-center md:items-start text-center md:text-left
-                 w-full py-[4rem] " // Thêm pt để tránh header cố định
+                 w-full py-[2rem] " // Thêm pt để tránh header cố định
     >
         <div className="w-full h-[1px] bg-[var(--foreground)] mb-12" />
       {/* DIV 1: TIÊU ĐỀ "CONTACTS" */}
@@ -80,7 +84,7 @@ export default function Contacts() {
           <div className="flex flex-row space-x-8 flex-wrap justify-center md:justify-start">
             <motion.a
               variants={itemVariants}
-              href="https://dribbble.com/your-dribbble-profile" // ĐỔI LINK NÀY
+              href="https://dribbble.com/lowf2505" // ĐỔI LINK NÀY
               target="_blank"
               rel="noopener noreferrer"
               className="text-lg text-black inline-flex items-center email-link-underline mb-2 md:mb-0"
@@ -90,7 +94,7 @@ export default function Contacts() {
             </motion.a>
             <motion.a
               variants={itemVariants}
-              href="https://facebook.com/your-facebook-profile" // ĐỔI LINK NÀY
+              href="https://facebook.com/Lowf2505/" // ĐỔI LINK NÀY
               target="_blank"
               rel="noopener noreferrer"
               className="text-lg text-black inline-flex items-center email-link-underline mb-2 md:mb-0"
@@ -100,7 +104,7 @@ export default function Contacts() {
             </motion.a>
             <motion.a
               variants={itemVariants}
-              href="https://linkedin.com/in/your-linkedin-profile" // ĐỔI LINK NÀY
+              href="https://linkedin.com/in/loitran1995/" // ĐỔI LINK NÀY
               target="_blank"
               rel="noopener noreferrer"
               className="text-lg text-black inline-flex items-center email-link-underline mb-2 md:mb-0"
@@ -110,7 +114,7 @@ export default function Contacts() {
             </motion.a>
             <motion.a
               variants={itemVariants}
-              href="https://behance.net/your-behance-profile" // ĐỔI LINK NÀY
+              href="https://behance.net/Lowf" // ĐỔI LINK NÀY
               target="_blank"
               rel="noopener noreferrer"
               className="text-lg text-black inline-flex items-center email-link-underline mb-2 md:mb-0"

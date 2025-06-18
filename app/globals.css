@@ -38,9 +38,7 @@ header {
 /* Áp dụng Fragment Mono cho các phần tử cần nó */
 
 .font-fragment-mono {
-    /* Tên class bạn tự định nghĩa */
-    font-family: 'Fragment Mono', monospace;
-    /* 'Fragment Mono' là tên font từ Google Fonts */
+    font-family: var(--font-fragment-mono), monospace;
 }
 
 .font-poppins {
@@ -76,4 +74,22 @@ header {
 .email-link-underline:hover::after {
     width: 100%;
     /* Khi hover, gạch chân sẽ mở rộng ra toàn bộ chiều rộng */
+}
+
+
+/* Bật tính năng cuộn mượt mà cho toàn bộ trang */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Đảm bảo nội dung không bị che bởi header cố định khi cuộn tới */
+
+
+/* Điều chỉnh giá trị 160px để khớp với chiều cao header của bạn */
+
+:target {
+    scroll-margin-top: 160px;
+    /* Thêm padding trên khi cuộn đến một ID cụ thể */
 }

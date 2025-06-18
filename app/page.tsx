@@ -4,6 +4,8 @@
 
 import HeroSection from '@/components/HeroSection'; // Comment hoặc xóa nếu chưa có HeroSection
 import Contacts from '@/components/Contacts'
+import Projects from '@/components/Projects'
+
 export default function HomePage() {
 
   
@@ -12,6 +14,7 @@ export default function HomePage() {
     <main className="flex flex-col items-start justify-start w-full bg-white">
       <HeroSection />
 <Contacts/>
+<Projects/>
      
     </main>
   );

@@ -1,23 +1,29 @@
 // app/layout.tsx
-
-import './globals.css';
-import {Poppins } from 'next/font/google'; // Giữ Inter nếu bạn vẫn muốn dùng nó với next/font/google
-import type { Metadata } from 'next';
 import Header from '@/components/Header';
+import ConfettiClicker from '@/components/ConfettiClicker';
+import './globals.css'; // Import global CSS của bạn
 
-// Cấu hình font Google Inter (giữ nguyên nếu bạn muốn dùng Inter với next/font/google)
+// Import font từ next/font
+// **QUAN TRỌNG:** Đảm bảo 'Fragment_Mono' thực sự có sẵn trên Google Fonts.
+// Nếu không, bạn cần thay thế nó bằng next/font/local (xem hướng dẫn bên dưới).
+import { Poppins, Fragment_Mono } from 'next/font/google';
+
+// Khai báo font Poppins
 const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'], // Đảm bảo có '400' ở đây
-  variable: '--font-poppins', // Tên biến CSS nếu bạn muốn dùng
+  subsets: ['latin'], // Hoặc bất kỳ subset nào bạn cần
+  display: 'swap',
+  weight: ['400', '700'], // Chỉ tải các trọng lượng bạn sử dụng
+  variable: '--font-poppins', // Đặt biến CSS cho Poppins
 });
 
+// Khai báo font Fragment Mono
+const fragmentMono = Fragment_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400'], // Giả sử các trọng lượng này có sẵn
+  variable: '--font-fragment-mono', // Đặt biến CSS cho Fragment Mono
+});
 
-
-export const metadata: Metadata = {
-  title: 'Loi Portfolio | UI/UX Designer',
-  description: 'Portfolio của Lợi Trần, một UI/UX Designer đam mê.',
-};
 
 export default function RootLayout({
   children,
@@ -25,18 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // THÊM CÁC THẺ LINK GOOGLE FONTS VÀO ĐÂY
-    <html lang="en" className={poppins.variable}> 
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" /> 
-        <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet" />
-      </head>
-      <body className="bg-white">
-       <div className=''>
-          <Header />
-          {children}
-</div>
+    // Sử dụng các biến CSS font class trên thẻ html để font có sẵn toàn cục
+    <html lang="en" className={`${poppins.variable} ${fragmentMono.variable}`}>
+      <body><Header/>
+        <ConfettiClicker/>{children}
+        
       </body>
     </html>
   );
