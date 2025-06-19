@@ -65,7 +65,7 @@ export default function HeroSection() {
       {/* Cột trái: Hình ảnh Avatar */}
       <motion.div variants={itemVariants} className="mb-10 md:mb-0 md:mr-10 flex-shrink-0">
         <Image
-          src="/images/avatar.jpg" // THAY ĐỔI ĐƯỜNG DẪN ĐẾN AVATAR CỦA BẠN
+          src="/images/avatar.webp" // THAY ĐỔI ĐƯỜNG DẪN ĐẾN AVATAR CỦA BẠN
           alt="Lợi Trần's Avatar"
           width={466} // Chiều rộng cố định
           height={466} // Chiều cao cố định

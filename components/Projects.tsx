@@ -48,7 +48,7 @@ export default function Projects() {
   const projectsData = [
     {
       id: 1,
-      imageSrc: "/images/prj-gymination.png", // THAY THẾ BẰNG ĐƯỜNG DẪN HÌNH ẢNH THỰC TẾ
+      imageSrc: "/images/prj-gymination.webp", // THAY THẾ BẰNG ĐƯỜNG DẪN HÌNH ẢNH THỰC TẾ
       altText: "Gymination app",
       title: "Gymination app",
       description: "Gym tracking & coaching. Pocket fitness coach.",
@@ -56,7 +56,7 @@ export default function Projects() {
     },
     {
       id: 2,
-      imageSrc: "/images/prj-lunarlore.png",
+      imageSrc: "/images/prj-lunarlore.webp",
       altText: "LunarLore website",
       title: "LunarLore website",
       description: "Astrology and numerology insights for brand identity.",
@@ -64,7 +64,7 @@ export default function Projects() {
     },
     {
       id: 3,
-      imageSrc: "/images/prj-chohoatuoi.png",
+      imageSrc: "/images/prj-chohoatuoi.webp",
       altText: "Chohoatuoi.vn",
       title: "Chohoatuoi.vn",
       description: "Order fresh flowers online for any occasion.",
@@ -72,7 +72,7 @@ export default function Projects() {
     },
     {
       id: 4,
-      imageSrc: "/images/prj-hokkaido.png",
+      imageSrc: "/images/prj-hokkaido.webp",
       altText: "Hokaido Ordering app",
       title: "Hokaido Ordering app",
       description: "Order restaurant dishes directly from your table.",
