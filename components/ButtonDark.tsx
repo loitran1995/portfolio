@@ -1,4 +1,4 @@
-// components/Button.tsx
+// components/ButtonDark.tsx (hoặc tên file của bạn)
 "use client";
 
 import {
@@ -21,7 +21,6 @@ interface ButtonProps {
   className?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
-  variant?: "light" | "dark";
 }
 
 const ANIMATION_DURATION = 1.0;
@@ -95,7 +94,6 @@ export default function Button({
   className = "",
   type = "button",
   disabled = false,
-  variant = "light",
 }: ButtonProps) {
   const iconColorControls = useAnimation();
 
@@ -131,77 +129,36 @@ export default function Button({
     mouseY.set(0);
   };
 
-  const getButtonStyles = (currentVariant: "light" | "dark") => {
-    if (currentVariant === "dark") {
-      // Styles cho nền tối (tức là ButtonDark cũ)
-      return `
-        inline-flex items-center justify-center
-        font-poppins text-base font-normal
-        py-4 px-3
-        rounded-full
-        transition-all duration-300 ease-in-out
-        whitespace-nowrap
-       text-white                 /* Chưa hover: chữ trắng */
-        border border-[1px]
-       border-white               /* Chưa hover: viền trắng */
-        hover:text-black           /* Chữ đen khi hover */
-        hover:bg-white             /* Nền trắng khi hover */
-        hover:border-transparent   /* Khi hover: viền biến mất */
-        overflow-hidden
-        width: fit-content;
-      `;
-    } else {
-      // Styles cho nền sáng (tức là Button cũ) - mặc định
-      return `
-        inline-flex items-center justify-center
-        font-poppins text-base font-normal
-        py-4 px-3
-        rounded-full
-        transition-all duration-300 ease-in-out
-        whitespace-nowrap
-       text-black                 /* Chưa hover: chữ đen */
-        border border-[1px]
-       border-black               /* Chưa hover: viền đen */
-        hover:text-white           /* Chữ trắng khi hover */
-        hover:bg-black             /* Nền đen khi hover */
-        hover:border-transparent   /* Khi hover: viền biến mất */
-        overflow-hidden
-        width: fit-content;
-      `;
-    }
-  };
-
-  const getIconContainerStyles = (currentVariant: "light" | "dark") => {
-    if (currentVariant === "dark") {
-      // Styles cho icon trên nền tối (ButtonDark cũ)
-      return `
-        flex items-center justify-center
-        w-8 h-8
-        rounded-full
-        text-[20px]
-        bg-white               /* Nền trắng mặc định */
-        text-black             /* Chữ đen mặc định */
-      `;
-    } else {
-      // Styles cho icon trên nền sáng (Button cũ) - mặc định
-      return `
-        flex items-center justify-center
-        w-8 h-8
-        rounded-full
-        text-[20px]
-        bg-black              /* Nền đen mặc định */
-        text-white            /* Chữ trắng mặc định */
-      `;
-    }
-  };
-
-  const allClassNames = `${getButtonStyles(variant)} ${className} ${
-    disabled ? "opacity-50 cursor-not-allowed" : ""
-  }`;
+  const baseStyles = `
+    inline-flex items-center justify-center
+    font-poppins text-base font-normal
+    py-4 px-3
+    rounded-full
+    transition-all duration-300 ease-in-out
+    whitespace-nowrap
+    text-white
+    border border-[1px]
+    border-white
+    hover:text-black
+    hover:bg-white
+    hover:border-transparent
+    overflow-hidden
+    width: fit-content;
+  `;
 
   const iconSpacing = "ml-4";
-  const iconContainerClassNames = getIconContainerStyles(variant);
+  const iconContainerStyles = `
+    flex items-center justify-center
+    w-8 h-8
+    rounded-full
+    text-[20px]
++   bg-white /* Màu nền icon mặc định là trắng */
++   text-black /* Màu chữ icon mặc định là đen */
+  `;
 
+  const allClassNames = `${baseStyles} ${className} ${
+    disabled ? "opacity-50 cursor-not-allowed" : ""
+  }`;
 
   const animatedChildren =
     typeof children === "string" ? (
@@ -213,11 +170,6 @@ export default function Button({
         {children}
       </motion.span>
     );
-
-  // Logic màu icon cho hover
-  const iconHoverStartColors = variant === "dark" ? { backgroundColor: "black", color: "white" } : { backgroundColor: "white", color: "black" };
-  const iconHoverEndColors = variant === "dark" ? { backgroundColor: "white", color: "black" } : { backgroundColor: "black", color: "white" };
-
 
   const commonProps = {
     onClick: onClick,
@@ -234,15 +186,19 @@ export default function Button({
     onHoverStart: async () => {
       if (disabled) return;
       await iconColorControls.stop();
-      iconColorControls.start(
-        iconHoverStartColors, // Sử dụng màu động
-        { duration: 0.2 }
-      );
+     iconColorControls.set({ backgroundColor: "white", color: "black" }); // Lỗi: Đang set ngược màu khởi tạo
+     // Khi hover bắt đầu: background icon đen, chữ icon trắng
+     iconColorControls.start(
+       { backgroundColor: "black", color: "white" },
+       { duration: 0.2 }
+     );
     },
     onHoverEnd: () => {
       if (disabled) return;
       iconColorControls.stop();
-      iconColorControls.set(iconHoverEndColors); // Sử dụng màu động
+    iconColorControls.set({ backgroundColor: "black", color: "white" }); // Lỗi: Đang set màu hover khi kết thúc hover
+     // Khi hover kết thúc: background icon trắng, chữ icon đen
+     iconColorControls.set({ backgroundColor: "white", color: "black" });
     },
   };
 
@@ -251,7 +207,7 @@ export default function Button({
       {animatedChildren}
       <motion.span
         variants={iconVariants}
-        className={`${iconSpacing} ${iconContainerClassNames}`}
+        className={`${iconSpacing} ${iconContainerStyles}`}
         animate={iconColorControls}
         transition={{ duration: 0.2 }}
       >

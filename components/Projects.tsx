@@ -56,11 +56,12 @@ export default function Projects() {
     },
     {
       id: 2,
-      imageSrc: "/images/prj-lunarlore.webp",
-      altText: "LunarLore website",
-      title: "LunarLore website",
-      description: "Astrology and numerology insights for brand identity.",
-      link: "https://www.behance.net/gallery/211163179/LunarLore-Explore-your-soul-under-Moons-glow",
+       imageSrc: "/images/prj-AIxBlock.webp",
+      altText: "Hokaido Ordering app",
+      title: "Hokaido Ordering app",
+      description: "Order restaurant dishes directly from your table.",
+      link: "https://www.behance.net/gallery/200839041/Hokkaido-Ordering-App",
+     
     },
     {
       id: 3,
@@ -71,7 +72,25 @@ export default function Projects() {
       link: "https://www.behance.net/gallery/200447511/Chohoatuoivn-Flower-E-commerce-website",
     },
     {
-      id: 4,
+      
+       id: 4,
+      imageSrc: "/images/prj-lunarlore.webp",
+      altText: "LunarLore website",
+      title: "LunarLore website",
+      description: "Astrology and numerology insights for brand identity.",
+      link: "https://www.behance.net/gallery/211163179/LunarLore-Explore-your-soul-under-Moons-glow",
+    },
+
+   {
+     id: 5,
+      imageSrc: "/images/prj-hokkaido.webp",
+      altText: "Hokaido Ordering app",
+      title: "Hokaido Ordering app",
+      description: "Order restaurant dishes directly from your table.",
+      link: "https://www.behance.net/gallery/200839041/Hokkaido-Ordering-App",
+    },
+     {
+      id: 6,
       imageSrc: "/images/prj-hokkaido.webp",
       altText: "Hokaido Ordering app",
       title: "Hokaido Ordering app",
@@ -88,7 +107,7 @@ export default function Projects() {
       initial="hidden"
       animate={isInView ? "show" : "hidden"}
       className="flex flex-col items-center md:items-start text-center md:text-left
-                 w-full   pb-[4rem]" // Đã điều chỉnh padding
+                 w-full px-24  pb-[4rem]" // Đã điều chỉnh padding
     >
       {/* DIV 1: TIÊU ĐỀ "UI/UX Designs" */}
       <motion.h1

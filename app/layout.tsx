@@ -1,29 +1,22 @@
-// app/layout.tsx
-import Header from '@/components/Header';
+// // app/layout.tsx
 import ConfettiClicker from '@/components/ConfettiClicker';
-import './globals.css'; // Import global CSS của bạn
-
-// Import font từ next/font
-// **QUAN TRỌNG:** Đảm bảo 'Fragment_Mono' thực sự có sẵn trên Google Fonts.
-// Nếu không, bạn cần thay thế nó bằng next/font/local (xem hướng dẫn bên dưới).
+import './globals.css';
+import { ScrollProvider } from '@/context/ScrollContext';
 import { Poppins, Fragment_Mono } from 'next/font/google';
 
-// Khai báo font Poppins
 const poppins = Poppins({
-  subsets: ['latin'], // Hoặc bất kỳ subset nào bạn cần
+  subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '700'], // Chỉ tải các trọng lượng bạn sử dụng
-  variable: '--font-poppins', // Đặt biến CSS cho Poppins
+  weight: ['400', '700'],
+  variable: '--font-poppins',
 });
 
-// Khai báo font Fragment Mono
 const fragmentMono = Fragment_Mono({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400'], // Giả sử các trọng lượng này có sẵn
-  variable: '--font-fragment-mono', // Đặt biến CSS cho Fragment Mono
+  weight: ['400'],
+  variable: '--font-fragment-mono',
 });
-
 
 export default function RootLayout({
   children,
@@ -31,11 +24,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // Sử dụng các biến CSS font class trên thẻ html để font có sẵn toàn cục
     <html lang="en" className={`${poppins.variable} ${fragmentMono.variable}`}>
-      <body><Header/>
-        <ConfettiClicker/>{children}
-        
+      <body>
+        {/* Bao bọc toàn bộ nội dung bằng ScrollProvider */}
+        <ScrollProvider>
+          <div className="relative z-0">
+            <ConfettiClicker />
+            <main className="min-h-screen">
+              {children} {/* Tất cả các trang sẽ được render ở đây */}
+            </main>
+          </div>
+        </ScrollProvider>
       </body>
     </html>
   );

@@ -60,7 +60,7 @@ export default function HeroSection() {
       // Thay đổi bố cục thành flexbox, căn giữa theo chiều dọc
       // Thêm padding và max-w để nội dung không bị quá rộng
       className="flex flex-col md:flex-row items-center md:items-center justify-center md:justify-center
-                  text-center md:text-left w-full py-[2rem]"
+                  text-center md:text-left w-full py-[2rem] px-24"
     >
       {/* Cột trái: Hình ảnh Avatar */}
       <motion.div variants={itemVariants} className="mb-10 md:mb-0 md:mr-10 flex-shrink-0">
@@ -104,7 +104,7 @@ export default function HeroSection() {
           className="text-[24px] mb-8 text-[var(--gray-medium)]"
           elementType="h1" // Render là thẻ h1
         />
-        <Button
+        <Button variant="light"
           href="https://drive.google.com/file/d/1R54mkWFuYN-t76L_GWH9ng1sfML5qoRr/view"
           className="mb-6" // Giữ lại mb-6 để có khoảng cách dưới nút 
         >
