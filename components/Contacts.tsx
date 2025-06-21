@@ -47,7 +47,7 @@ export default function Contacts() {
       initial="hidden"
       animate="show"
       className="flex flex-col items-center md:items-start text-center md:text-left
-                 w-full py-[2rem] px-24" // Thêm pt để tránh header cố định
+                 w-full py-[2rem] px-12 md:px-24" // Thêm pt để tránh header cố định
     >
         <div className="w-full h-[1px] bg-[var(--foreground)] mb-12" />
       {/* DIV 1: TIÊU ĐỀ "CONTACTS" */}
@@ -126,7 +126,7 @@ export default function Contacts() {
           
         </motion.div>
       </div>
-        <div className="w-full h-[1px] bg-[var(--foreground)] mb-12" />
+        <div className="w-full h-[1px] bg-[var(--foreground)] mb-8" />
     </motion.div>
     
   );

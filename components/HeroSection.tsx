@@ -60,7 +60,7 @@ export default function HeroSection() {
       // Thay đổi bố cục thành flexbox, căn giữa theo chiều dọc
       // Thêm padding và max-w để nội dung không bị quá rộng
       className="flex flex-col md:flex-row items-center md:items-center justify-center md:justify-center
-                  text-center md:text-left w-full py-[2rem] px-24"
+                  text-center md:text-left w-full py-[2rem] px-12 md:px-24"
     >
       {/* Cột trái: Hình ảnh Avatar */}
       <motion.div variants={itemVariants} className="mb-10 md:mb-0 md:mr-10 flex-shrink-0">
@@ -87,12 +87,13 @@ export default function HeroSection() {
         />
 
         {/* Vị trí/Nghề nghiệp */}
+      
         <AnimatedText
           text="UI/UX DESIGNER"
           charVariants={charAppearVariants}
           // staggerDelay={0.05} // staggerDelay đã được xử lý bên trong AnimatedText
           className="font-fragment-mono mb-2 leading-tight
-                     text-[6vw] md:text-[6vw] lg:text-[5.5vw]"
+                     text-[6vw] md:text-[6vw] lg:text-[5.5vw] color-black"
           elementType="h1" // Render là thẻ h1
         />
 

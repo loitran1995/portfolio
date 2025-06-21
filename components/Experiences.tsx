@@ -97,7 +97,7 @@ export default function Experiences() {
         show: { opacity: 1, transition: { staggerChildren: 0.1 } } // Stagger cho tiêu đề và các dòng chính
       }}
       className="flex flex-col items-center md:items-start text-center md:text-left
-                 w-full pb-[4rem] px-24"
+                 w-full pb-[4rem] px-12 md:px-24"
     >
       <div className="w-full h-[1px] bg-[var(--foreground)] mb-12" />
 
@@ -106,7 +106,7 @@ export default function Experiences() {
         variants={mainContentVariants} // Áp dụng mainContentVariants
         className="text-[32px] font-fragment-mono text-[var(--gray-medium)] mb-4 w-full text-center md:text-left"
       >
-        Experiences
+        Experiences & Education
       </motion.h1>
 
       {/* Dòng 1: Education */}
