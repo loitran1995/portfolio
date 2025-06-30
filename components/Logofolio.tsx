@@ -9,7 +9,7 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 export default function Logofolio() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.03 });
 
   const mainContentVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -99,7 +99,7 @@ export default function Logofolio() {
                   src={logo.src}
                   alt={logo.alt}
                   fill
-                
+                  
                   className=" p-2  md:p-3 "
                 />
               </div>

@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView, Variants } from 'framer-motion';
 
 const ORIGINAL_TEXT = "Thanks for being here.";
-const ORIGINAL_TEXT_2 = "Built by Loi with Google Gemini whipped 5 times a minute. Of course, I'm a UI/UX designer, not a code-slinging dev!";
+const ORIGINAL_TEXT_2 = "Built by Loi with Google Gemini, Copilot, Grok whipped 5 times a minute. Of course, I'm a UI/UX designer, not a code-slinging dev!";
 const GLITCH_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-=_+[]{}|;:',.<>/?";
 const REVEAL_DELAY_PER_CHAR = 0.08; // Độ trễ giữa các ký tự bắt đầu lộ diện
 const RESOLVE_STEPS = 8; // Số bước để một ký tự ngẫu nhiên chuyển thành ký tự đúng

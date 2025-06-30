@@ -1,10 +1,8 @@
-// // app/layout.tsx
-import ConfettiClicker from '@/components/ConfettiClicker';
+// app/layout.tsx
 import './globals.css';
-import { ScrollProvider } from '@/context/ScrollContext';
 import { Poppins, Fragment_Mono } from 'next/font/google';
 import { Metadata } from 'next';
-
+import ClientLayout from '@/components/ClientLayout';
 const poppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
@@ -52,15 +50,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable} ${fragmentMono.variable}`}>
       <body>
-        {/* Bao bọc toàn bộ nội dung bằng ScrollProvider */}
-        <ScrollProvider>
-          <div className="relative z-0 ">
-            <ConfettiClicker />
-            <main className="min-h-screen">
-              {children} {/* Tất cả các trang sẽ được render ở đây */}
-            </main>
-          </div>
-        </ScrollProvider>
+          <ClientLayout>{children}</ClientLayout>
+       
       </body>
     </html>
   );

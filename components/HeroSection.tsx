@@ -115,7 +115,7 @@ export default function HeroSection() {
         {/* Các Link Diploma */}
         <motion.div variants={containerVariants} className="flex flex-col space-y-3 md:flex-row items-center md:items-start justify-center md:justify-start">
           {/* Khối bọc chung cho các link */}
-          <div className="flex flex-row space-x-4 flex-wrap">
+<div className="flex flex-wrap justify-center md:justify-start space-x-4 w-full text-center">
             <motion.a
               variants={itemVariants}
               href="https://drive.google.com/file/d/1GZd0Dj4fTDmkgq2zi8dDfj7t63SXSxDs/view" // THAY ĐỔI LINK DIPLOMA 1

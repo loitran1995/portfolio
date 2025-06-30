@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function Projects() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.03 });
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },

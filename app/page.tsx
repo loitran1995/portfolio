@@ -9,13 +9,16 @@ import Skills from "@/components/Skills";
 import Logofolio from "@/components/Logofolio";
 import EnjoyProjects from "@/components/EnjoyProjects";
 import ThankYou from "@/components/ThankYou";
-import Header from "@/components/Header";
-
+// import Header from "@/components/Header";
+// import React, { useRef } from 'react';
+// import { HeaderRefContext } from '@/context/HeaderRefContext';
 export default function HomePage() {
+
+// const headerRef = useRef<HTMLElement>(null); // 👈 đúng kiểu cần
   return (
     // Xóa các class màu nền ở đây vì đã xử lý ở layout.tsx
     <main className="flex flex-col items-start justify-start w-full bg-white">
-      <Header />
+          {/* <HeaderRefContext.Provider value={headerRef}> */}
       <HeroSection />
       <Contacts />
       <Projects />
@@ -24,6 +27,7 @@ export default function HomePage() {
       <Logofolio/>
       <EnjoyProjects/>
       <ThankYou/>
+      {/* </HeaderRefContext.Provider> */}
     </main>
   );
 }
