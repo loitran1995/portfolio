@@ -16,7 +16,7 @@ export default function HeroSection() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, // Giảm thời gian stagger một chút để hiệu ứng nhanh hơn
+        staggerChildren: 0.1, // Giảm thời gian stagger một chút để hiệu ứng nhanh hơn
       } as Transition, // <-- ÉP KIỂU TOÀN BỘ OBJECT THÀNH Transition
     },
   };
@@ -28,7 +28,7 @@ export default function HeroSection() {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.7,
+        duration: 1,
         ease: 'easeInOut' as Easing // <-- ÉP KIỂU 'easeInOut' thành Easing
       } as Transition, // <-- ÉP KIỂU TOÀN BỘ OBJECT THÀNH Transition
     },

@@ -74,7 +74,14 @@ export default function Experiences() {
       altText: "VectorVision Logo",
       companyName: "VectorVision",
       position: "UI/UX",
-      duration: "2024 - Present",
+      duration: "2024 - 2025",
+    }, {
+      id: 5,
+      logoSrc: "/images/exp-AxB.svg",
+      altText: "AIxBlock Logo",
+      companyName: "AIxBlock",
+      position: "UI/UX",
+      duration: "2025 - Present",
     },
   ];
 

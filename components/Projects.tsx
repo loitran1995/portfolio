@@ -51,10 +51,10 @@ export default function Projects() {
     {
       id: 2,
       imageSrc: "/images/prj-AIxBlock.webp",
-      altText: "Hokkaido app",
-      title: "Hokkaido app",
-      description: "Order restaurant dishes directly from your table.",
-      link: "https://www.behance.net/gallery/200839041/Hokkaido-Ordering-App",
+      altText: "AIxBlock",
+      title: "AIxBlock Landing Page",
+      description: "The Unified Platform for End-to-End AI Development.",
+      link: "https://aixblock.io/",
     },
     {
       id: 3,

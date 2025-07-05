@@ -59,6 +59,8 @@ export default function Skills() {
     "Printable Design",
     "Content",
     "HTML, CSS",
+    "Animation",
+    "Micro-Interaction"
   ];
 
   return (

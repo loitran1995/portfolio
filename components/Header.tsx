@@ -4,10 +4,14 @@
 
 import Link from "next/link";
 // import { motion, useInView, AnimatePresence } from "framer-motion";
-import React, { useRef, useState,  useCallback } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import Image from "next/image";
 
-export default function Header({ forwardedRef }: { forwardedRef?: React.Ref<HTMLElement> }) {
+export default function Header({
+  forwardedRef,
+}: {
+  forwardedRef?: React.Ref<HTMLElement>;
+}) {
   const navItems = [
     {
       name: "Home",
@@ -88,17 +92,25 @@ export default function Header({ forwardedRef }: { forwardedRef?: React.Ref<HTML
       ),
     },
   ];
+  // Thêm vào phần đầu file
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("work.loitran@gmail.com");
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 1000); // Sau 2s sẽ reset lại trạng thái
+  };
 
   // const headerRef = useRef<HTMLElement>(null);
-
 
   const [itemStates, setItemStates] = useState<{ [key: string]: boolean }>(
     navItems.reduce((acc, item) => ({ ...acc, [item.name]: false }), {})
   );
 
   const timeoutRefs = useRef<{ [key: string]: NodeJS.Timeout | null }>({});
-
- 
 
   const CHARACTER_DELAY = 0.03;
   const ANIMATION_DURATION_FORWARD = 0.3;
@@ -123,8 +135,6 @@ export default function Header({ forwardedRef }: { forwardedRef?: React.Ref<HTML
     }, (totalForwardAnimationDuration + DELAY_BEFORE_REVERSE_ANIMATION_START) * 1000);
   }, []);
 
-  
-
   return (
     <>
       <header
@@ -133,12 +143,14 @@ export default function Header({ forwardedRef }: { forwardedRef?: React.Ref<HTML
       >
         <nav className="flex items-center justify-between w-full text-[var(--foreground)] mx-auto md:mx-0">
           <div className="flex flex-1 items-center justify-center md:justify-between mx-auto md:mx-0">
-            <Link href="/" className="flex items-center flex-shrink-0 mx-auto md:mx-0">
+            <Link
+              href="/"
+              className="flex items-center flex-shrink-0 mx-auto md:mx-0"
+            >
               <Image
                 src="/logo.svg"
                 alt="Loi Tran Logo"
                 width={80}
-                
                 height={64}
                 className="h-16 "
               />
@@ -198,19 +210,21 @@ export default function Header({ forwardedRef }: { forwardedRef?: React.Ref<HTML
                 ))}
               </ul>
 
+        
               <div className="flex items-center ml-auto hidden md:flex">
-                <a
-                  href="mailto:work.loitran@example.com"
+                <button
+                  onClick={handleCopyEmail}
                   className="text-[16px] font-fragment-mono text-[#1E1E1E] email-link-underline"
                 >
-                  work.loitran@gmail.com
-                </a>
+                  {copied ? "Copied" : "work.loitran@gmail.com"}
+                </button>
               </div>
+ 
+
             </div>
           </div>
         </nav>
       </header>
-      
     </>
   );
 }
